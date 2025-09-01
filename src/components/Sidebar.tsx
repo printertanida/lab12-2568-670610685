@@ -12,7 +12,29 @@ interface SidebarComponentProps  {
   userName: string;
   type?: "admin" |"student";
 }
-export type { SidebarProps };
+
+function SidebarComponent({userName, type}: SidebarComponentProps){
+  return (
+    <Box p={8}>
+      <Group>
+        <Indicator
+          color={type === "admin" ? "blue" : "orange"}  
+          size={12}
+          offset={5}
+          disabled={!type}
+          position="bottom-end"
+          withBorder
+          >
+          <Avatar radius="xl" color="cyan" src="/public/profile.jpg" />
+        </Indicator>
+        <Text>User : {userName} : {type === "admin" ? "Admin" : "Student"}</Text>
+      </Group>
+    </Box>
+  );
+}
+
+
+export type { SidebarComponentProps };
 export default function Sidebar() {
   return (
     <Stack
@@ -43,7 +65,7 @@ export default function Sidebar() {
       </Box>
       {/* แสดงผู้ใช้งาน */}
       <Box p={10}>
-        <Text>chanadda</Text>
+        <SidebarComponent userName="Tanida" type="student" />
       </Box>
     </Stack>
   );
